@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
+
+    public function index()
+    {
+        return view('home', [
+            'tweets' => auth()->user()->timeline()
+        ]);
+    }
+
     public function store()
     {
         // why we can pass this variable to create array below?

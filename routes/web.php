@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-auth()->loginUsingId(1);
+// auth()->loginUsingId(1);
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/tweets', [TweetController::class, 'store']);
+// Go to LoginController to update $redirectTo after login
+// Group the route with middleware auth. Of course you can also do that in controller in the constructor.
+Route::middleware('auth')->group(function () {
+    Route::get('/tweets', [TweetController::class, 'index'])->name('home');
+    Route::post('/tweets', [TweetController::class, 'store']);
+});
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');

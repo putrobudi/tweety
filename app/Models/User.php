@@ -48,7 +48,39 @@ class User extends Authenticatable
 
   public function timeline()
   {
-    return Tweet::where('user_id', $this->id)->latest()->get();
+    // We can write this logic with tweets relationship below. And for the timeline, we'll do something else.
+    // return Tweet::where('user_id', $this->id)->latest()->get();
+    
+    // include all of the user's tweets
+    // as well as the tweets of everyone
+    // they follow ... in descending order by date.
+
+    /* ******
+    // $this->follows will return a collection of all the users that the current user follows.
+    // And imagine if the user follows 5000 people. If in the end we're only going to pluck the id
+    // We can instead chain it like this: $this->follows()->pluck('id') so that it will be more performant.
+    // $ids = $this->follows->pluck('id');
+    $ids = $this->follows()->pluck('id');
+    // include current user id to in ids array.
+    $ids->push($this->id);
+
+    // Give me a collection of user_id where the user_id is in this array of ids
+    return Tweet::whereIn('user_id', $ids)->latest()->get(); 
+    ********** */
+
+    // You can also write the code block above like this 
+    $friends = $this->follows()->pluck('id');
+    // give me any tweets from the current friends
+    // or where the user id is from the current user.
+    // There are other relationship specific things if you go about it but 
+    // this is thought to be fine.
+    return Tweet::whereIn('user_id', $friends)
+      ->orWhere('user_id', $this->id)
+      ->latest()->get();
+  }
+
+  public function tweets() {
+    return $this->hasMany(Tweet::class);
   }
 
   // Method to create a new relationship
