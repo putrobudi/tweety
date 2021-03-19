@@ -43,7 +43,7 @@ class User extends Authenticatable
 
   public function getAvatarAttribute()
   {
-    return "https://i.pravatar.cc/40?u" . $this->email;
+    return "https://i.pravatar.cc/200?u" . $this->email;
   }
 
   public function timeline()
@@ -98,4 +98,11 @@ class User extends Authenticatable
     // It has to be in order. You cannot swap related pivot key and foreign pivot key.
     return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
   }
+  
+  // This the name of the key or the attribute in database that should be used as a Route Model Binding.
+  public function getRouteKeyName()
+  {
+    return 'name';
+  }
+  
 }
