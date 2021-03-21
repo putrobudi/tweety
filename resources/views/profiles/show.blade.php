@@ -1,28 +1,40 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app>
     <header class="mb-6 relative">
-        <img src="/images/default-profile-banner.jpg" alt="" class="mb-2 rounded-lg">
+        <div class="relative">
+            <img src="/images/default-profile-banner.jpg" alt="" class="mb-2 rounded-lg">
 
-        <div class="flex justify-between items-center mb-4">
+            <img src="{{ $user->avatar }}" 
+                alt="" 
+                class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
+                style="left: 50%"
+                width="150"
+                {{-- style="width: 150px; left: calc(50% - 75px); top: 292px;" 
+                using translate will be more reponsive. --}}>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
             <div>
                 <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
 
-            <div>
-                <a href="" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit Profile</a>
-                <a href="" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">Follow Me</a>
+            <div class="flex">
+                <a href="" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit
+                    Profile</a>
+
+                {{-- if you don't use :, it will be interpreted as a string. --}}
+                {{-- <x-follow-button :user="$user"></x-follow-button> --}}
+                <x-follow-button :user="$user"></x-follow-button>
             </div>
         </div>
         <p class="text-sm">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptas nesciunt autem a sapiente repellat,
-            minima illum soluta odit facilis asperiores eos iste voluptate quod neque sed. Maiores nemo vero et praesentium
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum voluptas nesciunt autem a sapiente
+            repellat,
+            minima illum soluta odit facilis asperiores eos iste voluptate quod neque sed. Maiores nemo vero et
+            praesentium
             voluptas reiciendis, accusamus repellat quam fugiat amet itaque, saepe doloribus ea eaque sint? Eveniet
             doloremque pariatur quisquam error.
         </p>
-        <img src="{{ $user->avatar }}" alt="" class="rounded-full mr-2 absolute"
-            style="width: 150px; left: calc(50% - 75px); top: 292px;">
 
     </header>
 
@@ -30,4 +42,4 @@
     @include('_timeline', [
     'tweets' => $user->tweets
     ])
-@endsection
+</x-app>

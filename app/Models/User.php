@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-  use HasFactory, Notifiable;
+  use HasFactory, Notifiable, Followable;
 
   /**
    * The attributes that are mass assignable.
@@ -80,29 +80,16 @@ class User extends Authenticatable
   }
 
   public function tweets() {
-    return $this->hasMany(Tweet::class);
-  }
-
-  // Method to create a new relationship
-  // When you create a relationship with this method and you don't assign withTimeStamps() on the follows() method,
-  // The timestamps column will be empty.
-  public function follow(User $user) {
-    return $this->follows()->save($user);
-  }
-
-  public function follows()
-  {
-    // Because we're not following Laravel's pivot table naming convention, then we have to specify the 
-    // custom table name as the second parameter. And because we're using a custom table name, 
-    // we'll have to specify the foreign pivot key and related pivot key. 
-    // It has to be in order. You cannot swap related pivot key and foreign pivot key.
-    return $this->belongsToMany(User::class, 'follows', 'user_id', 'following_user_id');
+    // You can set orderBy here if you always want to have it set.
+    return $this->hasMany(Tweet::class)->latest();
   }
   
   // This the name of the key or the attribute in database that should be used as a Route Model Binding.
-  public function getRouteKeyName()
-  {
-    return 'name';
-  }
+  // And this is how you'd do it in Laravel 6 and below. But in Larevel 7 and above you can directly write the attribute
+  // name in the wild card route. E.g /profiles/{user:name}
+  // public function getRouteKeyName()
+  // {
+  //   return 'name';
+  // }
   
 }
