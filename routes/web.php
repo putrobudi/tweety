@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetsController::class, 'store']);
     Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
+    Route::get('/profiles/{user:name}/edit', [ProfilesController::class, 'edit'])->middleware('can:edit,user');
 });
 
 // Because we are explicitly telling Laravel to use name as route key, in your blade you'll need to 

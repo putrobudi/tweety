@@ -19,8 +19,18 @@
             </div>
 
             <div class="flex">
-                <a href="" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit
-                    Profile</a>
+                {{-- if you want to simplify auth()->user() to e.g current_user() then you can make a global helper function.
+                    Just make a helper function in App directory. Notice this is similar but different
+                    to custom Model method. --}}
+               {{--  @if (auth()->user()->is($user)) --}} {{-- later you can use @can('edit-profile') if you implement authorization.--}}
+               {{-- with policy defined, when you want to give authorization e.g to administrator 
+                 or manager, then you'd just have to make changes in the policy. And then
+                 you'd just have to write @can('edit', $user) here. --}}
+               {{-- @if (current_user()->is($user)) --}}
+               @can('edit', $user)
+                    <a href="{{ $user->path('edit') }}" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit
+                        Profile</a>
+                @endcan
 
                 {{-- if you don't use :, it will be interpreted as a string. --}}
                 {{-- <x-follow-button :user="$user"></x-follow-button> --}}

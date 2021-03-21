@@ -83,6 +83,12 @@ class User extends Authenticatable
     // You can set orderBy here if you always want to have it set.
     return $this->hasMany(Tweet::class)->latest();
   }
+
+  public function path($append = '') {
+    $path = route('profile', $this->name);
+
+    return $append ? "{$path}/{$append}" : $path;
+  }
   
   // This the name of the key or the attribute in database that should be used as a Route Model Binding.
   // And this is how you'd do it in Laravel 6 and below. But in Larevel 7 and above you can directly write the attribute
