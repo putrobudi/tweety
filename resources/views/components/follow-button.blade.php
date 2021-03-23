@@ -9,7 +9,7 @@
       Larevel Livewire. --}}
 {{-- @if (auth()->user()->isNot($user)) --}} {{-- or user unless --}}
 @unless (current_user()->is($user))
-    <form method="POST" action="/profiles/{{ $user->name }}/follow" {{-- or you can do /follow and pass user as part of the request. --}}>
+    <form method="POST" action="{{ route('follow', $user->username) }}" {{-- or you can do /follow and pass user as part of the request. --}}>
         @csrf
         <button type="submit" class="bg-blue-500 rounded-full shadow py-2 px-4 text-white text-xs">
             {{ current_user()->following($user)

@@ -51,8 +51,16 @@ class User extends Authenticatable
     // return "https://i.pravatar.cc/200?u" . $this->email;
     // return asset($value); // this only works with Laravel Valet server. You can do below or change link configuration on
     // filesystem config
-    return asset('storage/' . $value);
+    $storage_path = 'storage/' . $value;
+    return asset($value ? $storage_path : '/images/default-avatar.png');
 
+    // you could do it like this if writing only asset($value) works --> return asset($value ?: path)
+
+  }
+
+  // $user->password = 'foobar'; This is called mutator everytime you're setting the password.
+  public function setPasswordAttribute($value) {
+    $this->attributes['password'] = bcrypt($value);
   }
 
   public function timeline()

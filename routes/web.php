@@ -3,6 +3,7 @@
 // quickly listen to any database queries, bindings, and dumps them.
 // DB::listen(function ($query) { var_dump($query->sql, $query->bindings); });
 
+use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\TweetsController;
@@ -28,11 +29,16 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetsController::class, 'store']);
-    Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store']);
+    Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store'])->name('follow');
     Route::get('/profiles/{user:username}/edit', [ProfilesController::class, 'edit'])->middleware('can:edit,user');
 
-    Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update']);
+    // You can wrap this middleware within a group with the one edit above.
+    Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update'])->middleware('can:edit,user');
+    
+    Route::get('/explore', [ExploreController::class, 'index']);
 });
+
+
 
 // Because we are explicitly telling Laravel to use name as route key, in your blade you'll need to 
 // be specific. For instance in _tweet.blade.php -> $tweet->user->name. You can't just write $tweet->user.

@@ -15,11 +15,13 @@ trait Followable
 
   public function toggleFollow(User $user)
   {
-    if ($this->following($user)) {
-      return $this->unfollow($user);
-    }
-    // have the auth'd user follow the given user
-    return $this->follow($user);
+    // You can simplify this conditional code with Laravel's toggle method. 
+    // if ($this->following($user)) {
+    //   return $this->unfollow($user);
+    // }
+    // // have the auth'd user follow the given user
+    // return $this->follow($user);
+    return $this->follows()->toggle($user);
   }
 
   public function unfollow(User $user)
