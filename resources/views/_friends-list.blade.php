@@ -1,7 +1,7 @@
 <h3 class="font-bold text-xl mb-4">Following</h3>
 <ul>
     {{-- @foreach (range(1, 8) as $item) --}}
-    @foreach (auth()->user()->follows as $user)
+    @forelse (current_user()->follows as $user)
         <li class="mb-4">
             <div> {{-- move the flex to anchor tag because anchor tag is only 1 element --}}
                 <a href="{{ route('profile', $user) }}" class="flex items-center text-sm">
@@ -15,5 +15,7 @@
                 </a>
             </div>
         </li>
-    @endforeach
+    @empty
+        <li>No friends yet!</li>
+    @endforelse
 </ul>

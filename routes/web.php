@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-auth()->loginUsingId(1);
+// auth()->loginUsingId(1);
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,8 +28,10 @@ Route::get('/', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', [TweetsController::class, 'index'])->name('home');
     Route::post('/tweets', [TweetsController::class, 'store']);
-    Route::post('/profiles/{user:name}/follow', [FollowsController::class, 'store']);
-    Route::get('/profiles/{user:name}/edit', [ProfilesController::class, 'edit'])->middleware('can:edit,user');
+    Route::post('/profiles/{user:username}/follow', [FollowsController::class, 'store']);
+    Route::get('/profiles/{user:username}/edit', [ProfilesController::class, 'edit'])->middleware('can:edit,user');
+
+    Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update']);
 });
 
 // Because we are explicitly telling Laravel to use name as route key, in your blade you'll need to 
@@ -37,7 +39,7 @@ Route::middleware('auth')->group(function () {
 // You need to define getRouteKeyName for that. Well I think this is not the case anymore with Laravel 8.
 // So, $tweet->user is okay. Or in old way, you'd declare $tweet->user->name in User method like path().
 // So return route('profile', $this->name);
-Route::get('/profiles/{user:name}', [ProfilesController::class, 'show'])->name('profile');
+Route::get('/profiles/{user:username}', [ProfilesController::class, 'show'])->name('profile');
 
 Auth::routes();
 
