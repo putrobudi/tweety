@@ -13,7 +13,11 @@ class ProfilesController extends Controller
     // What if we want to use name column? 
     public function show(User $user)
     {
-        return view('profiles.show', compact('user'));
+        // return view('profiles.show', compact('user'));
+        return view('profiles.show', [
+            'user' => $user,
+            'tweets' => $user->tweets()->paginate(50)
+        ]);
     }
 
     public function edit(User $user)

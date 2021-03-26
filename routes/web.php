@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     // You can wrap this middleware within a group with the one edit above.
     Route::patch('/profiles/{user:username}', [ProfilesController::class, 'update'])->middleware('can:edit,user');
     
-    Route::get('/explore', [ExploreController::class, 'index']);
+    // you might refer to invokable controller if you have a controller that only has a single action.
+    // So in this case we can remove 'index' because that's the only method the controller has. And change index method to __invoke
+    Route::get('/explore', ExploreController::class);
 });
 
 

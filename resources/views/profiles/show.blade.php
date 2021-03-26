@@ -3,17 +3,14 @@
         <div class="relative">
             <img src="/images/default-profile-banner.jpg" alt="" class="mb-2 rounded-lg">
 
-            <img src="{{ $user->avatar }}" 
-                alt="" 
-                class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2"
-                style="left: 50%"
-                width="150"
-                {{-- style="width: 150px; left: calc(50% - 75px); top: 292px;" 
+            <img src="{{ $user->avatar }}" alt=""
+                class="rounded-full mr-2 absolute bottom-0 transform -translate-x-1/2 translate-y-1/2" style="left: 50%"
+                width="150" {{-- style="width: 150px; left: calc(50% - 75px); top: 292px;" 
                 using translate will be more reponsive. --}}>
         </div>
 
         <div class="flex justify-between items-center mb-6">
-            <div>
+            <div style="max-width: 200px">
                 <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
@@ -22,13 +19,16 @@
                 {{-- if you want to simplify auth()->user() to e.g current_user() then you can make a global helper function.
                     Just make a helper function in App directory. Notice this is similar but different
                     to custom Model method. --}}
-               {{--  @if (auth()->user()->is($user)) --}} {{-- later you can use @can('edit-profile') if you implement authorization.--}}
-               {{-- with policy defined, when you want to give authorization e.g to administrator 
+                {{-- @if (auth()
+        ->user()
+        ->is($user)) --}} {{-- later you can use @can('edit-profile') if you implement authorization. --}}
+                {{-- with policy defined, when you want to give authorization e.g to administrator 
                  or manager, then you'd just have to make changes in the policy. And then
                  you'd just have to write @can('edit', $user) here. --}}
-               {{-- @if (current_user()->is($user)) --}}
-               @can('edit', $user)
-                    <a href="{{ $user->path('edit') }}" class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit
+                {{-- @if (current_user()->is($user)) --}}
+                @can('edit', $user)
+                    <a href="{{ $user->path('edit') }}"
+                        class="rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">Edit
                         Profile</a>
                 @endcan
 
@@ -50,6 +50,7 @@
 
     {{-- tweets has to be known for _timeline --}}
     @include('_timeline', [
-    'tweets' => $user->tweets
+        // 'tweets' => $user->tweets
+        'tweets' => $tweets
     ])
 </x-app>

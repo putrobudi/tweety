@@ -6,7 +6,8 @@
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-between">
                 @if (auth()->check()) {{-- using this method, it throws a feeling that it'd break 
-                    the moment you'd add more flecibility. So let's use blade components. --}}
+                    the moment you'd add more flecibility. So let's use blade components. Does the video refers 
+                    to auth()->check() or just the overall component? I don't know.. --}}
                     <div class="lg:w-32">
                         @include('_sidebar-links')
                     </div>
@@ -15,7 +16,7 @@
                     {{ $slot }}
                 </div>
                 @if (auth()->check())
-                    <div class="lg:w-1/6 bg-blue-100 rounded-lg p-4">
+                    <div class="lg:w-1/6">
                         @include('_friends-list')
                     </div>
                 @endif
