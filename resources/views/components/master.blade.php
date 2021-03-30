@@ -35,5 +35,5 @@
         {{ $slot }}
     </div>
 </body>
-
+    <script src="http://unpkg.com/turbolinks"></script> {{-- or you can pull in through npm --}}
 </html>

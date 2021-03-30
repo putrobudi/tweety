@@ -16,8 +16,10 @@ class ProfilesController extends Controller
         // return view('profiles.show', compact('user'));
         return view('profiles.show', [
             'user' => $user,
-            'tweets' => $user->tweets()->paginate(50)
+            'tweets' => $user->tweets()->withLikes()->paginate(50)
         ]);
+        // The point where you keep loading tweets, you might want to extract this to a repository or a helper method
+        // on your model. It's something to be aware of.
     }
 
     public function edit(User $user)

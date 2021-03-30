@@ -1,0 +1,71 @@
+[33mcommit aa20e4eacacaa98078091d6f4b540d3e6ac1f170[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Fri Mar 26 19:50:07 2021 +0700
+
+    Clean Up
+
+[33mcommit 31d1475c56d76181431d9624bdd699c4457b6d39[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Tue Mar 23 15:00:02 2021 +0700
+
+    Build the Explore Page
+
+[33mcommit 5d0afa322dd1db495dcd085e01f9a75cc019dfd3[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Tue Mar 23 12:36:50 2021 +0700
+
+    File Storage and Custom Avatars
+
+[33mcommit 05931a3d2077db96ae71c079bddb3f4980a4e546[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Sun Mar 21 19:47:30 2021 +0700
+
+    Profile Authorization Logic
+
+[33mcommit b0d083f9e792843f02ae5ff8d2d81211f18ac780[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Sun Mar 21 13:08:45 2021 +0700
+
+    Build the Follow Form
+
+[33mcommit 01caa5f37911ffb805ce97c6d76c4d19c582c965[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Sat Mar 20 16:27:51 2021 +0700
+
+    Nested Layout Files Using Components
+
+[33mcommit bf56b11b76ca7db7f5e860572872992a09e53aef[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Fri Mar 19 20:29:37 2021 +0700
+
+    Construct the Profile
+
+[33mcommit 38c227f2ac331bdafea2e944580a307654e09dd7[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Thu Mar 18 11:59:38 2021 +0700
+
+    Expanding the Timeline
+
+[33mcommit b593b3f49687bd84dbad696ea36ae713c3959b2a[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Wed Mar 17 19:31:13 2021 +0700
+
+    Build a Following
+
+[33mcommit 7042f91a873b857f734a3cf869e73d22ca8a9865[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Wed Mar 17 16:34:19 2021 +0700
+
+    Make the Timeline Dynamic
+
+[33mcommit 73d19688a928da8f06d8926ea03ea5104eb2e66e[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Wed Mar 17 13:04:41 2021 +0700
+
+    Design the Timeline
+
+[33mcommit 2b9b4a57c2188d644d4bb231c34cbf0a89e171b8[m
+Author: Putro Budi <putromulyobudi@gmail.com>
+Date:   Tue Mar 16 08:25:33 2021 +0700
+
+    First commit
